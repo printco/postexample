@@ -35,7 +35,7 @@ This is response from server
 
 public class HttpPostExampleApp {
     public static void main(String[] args) throws IOException {
-        URL url = new URL("http://localhost/postexample.php");
+        URL url = new URL("http://localhost:8080/fileupload");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         // Post method
         con.setRequestMethod("POST");
@@ -53,7 +53,7 @@ public class HttpPostExampleApp {
         //      [1] => b.txt
         //      [2] => c.txt
         // )
-        String payload = "filename[]=a.txt&filename[]=b.txt&filename[]=c.txt&destpath=/home/user/upload/";
+        String payload = "filename[0]=a.txt&filename[1]=b.txt&filename[2]=c.txt&destpath=/";
         os.write(payload.getBytes());
 
 
@@ -61,7 +61,7 @@ public class HttpPostExampleApp {
         StringBuilder response = new StringBuilder();
         BufferedReader br = new BufferedReader(isr);
 
-        String httpResponseContent = "";
+        String httpResponseContent ;
         while( (httpResponseContent = br.readLine()) != null ) {
             response.append(httpResponseContent);
         }
